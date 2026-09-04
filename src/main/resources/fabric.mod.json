@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "prestige-client",
+  "version": "${version}",
+  "name": "Prestige Client",
+  "description": "Professional Crystal PvP utility client for Minecraft 1.20.x",
+  "authors": [
+    "Prestige Team"
+  ],
+  "contact": {
+    "homepage": "https://example.com",
+    "sources": "https://github.com/example/prestige-client"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.prestige.client.PrestigeClient"
+    ]
+  },
+  "mixins": [
+    "prestige.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "1.20.1",
+    "java": ">=21"
+  }
+}

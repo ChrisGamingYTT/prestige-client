@@ -1,0 +1,204 @@
+{
+  "CrystalAura": {
+    "enabled": false,
+    "Range": 6.0,
+    "Delay": 2,
+    "Rotate": true,
+    "Swing": true,
+    "Rotation Speed": 45.0
+  },
+  "CrystalAttack": {
+    "enabled": false,
+    "Range": 5.0,
+    "Delay": 1,
+    "Swing": true,
+    "Prioritize Own": true
+  },
+  "CrystalSpeed": {
+    "enabled": false,
+    "Speed": 1.5,
+    "Duration": 20,
+    "Auto": true
+  },
+  "CrystalESP": {
+    "enabled": false,
+    "Box": true,
+    "Health": true,
+    "Distance": true,
+    "Radius": false,
+    "Range": 64.0
+  },
+  "CrystalDefense": {
+    "enabled": false,
+    "Avoid": true,
+    "Danger Range": 6.0,
+    "Prediction": 5
+  },
+  "KillAura": {
+    "enabled": false,
+    "Range": 5.5,
+    "CPS": 15,
+    "Rotate": true,
+    "Swing": true,
+    "Rotation Speed": 45.0
+  },
+  "Rotation": {
+    "enabled": false,
+    "Speed": 45.0,
+    "Smooth": true,
+    "Silent": true,
+    "Tolerance": 5
+  },
+  "TargetAssist": {
+    "enabled": false,
+    "Lowest Health": true,
+    "Nearest": false,
+    "Range": 20.0,
+    "Switch on Death": true
+  },
+  "AutoClicker": {
+    "enabled": false,
+    "CPS": 12,
+    "Left Click": false,
+    "Right Click": false,
+    "Swing": true
+  },
+  "AutoHeal": {
+    "enabled": false,
+    "Health Threshold": 15,
+    "Delay": 10,
+    "Smart Eat": true
+  },
+  "Velocity": {
+    "enabled": false,
+    "Reduction": 80,
+    "Crystals": true,
+    "Hits": true,
+    "Explosions": false
+  },
+  "AntiVoid": {
+    "enabled": false,
+    "Y Level": 0,
+    "Jump": true,
+    "Place Blocks": false
+  },
+  "NoFall": {
+    "enabled": false,
+    "Packet": true,
+    "Motion": false,
+    "Distance": 4
+  },
+  "Sprint": {
+    "enabled": false,
+    "All Directions": false,
+    "Only Forward": true,
+    "Delay": 0
+  },
+  "Strafe": {
+    "enabled": false,
+    "Speed": 1.0,
+    "Auto Strafe": false,
+    "Range": 8.0
+  },
+  "BunnyHop": {
+    "enabled": false,
+    "Speed": 1.3,
+    "Delay": 1,
+    "Auto Jump": true
+  },
+  "FastBridge": {
+    "enabled": false,
+    "Range": 5,
+    "Delay": 1,
+    "Tower": false,
+    "Swing": true
+  },
+  "AutoWalk": {
+    "enabled": false,
+    "Forward": true,
+    "Strafe": false,
+    "Direction": 0
+  },
+  "PlayerESP": {
+    "enabled": false,
+    "Box": true,
+    "Health": true,
+    "Distance": true,
+    "Armor": false,
+    "Range": 128.0
+  },
+  "CrystalRender": {
+    "enabled": false,
+    "Box": true,
+    "Radius": true,
+    "Line": false,
+    "Health": true
+  },
+  "Tracers": {
+    "enabled": false,
+    "Players": true,
+    "Crystals": true,
+    "Range": 64.0,
+    "Width": 2
+  },
+  "Nametags": {
+    "enabled": false,
+    "Health": true,
+    "Armor": true,
+    "Distance": true,
+    "Scale": 1
+  },
+  "FullBright": {
+    "enabled": false,
+    "Brightness": 1.0,
+    "Gamma": true
+  },
+  "CombatHUD": {
+    "enabled": false,
+    "Target Info": true,
+    "Nearby Players": true,
+    "Health": true,
+    "Hunger": true,
+    "Max Players": 5
+  },
+  "Radar": {
+    "enabled": false,
+    "Size": 100,
+    "Range": 64.0,
+    "Players": true,
+    "Crystals": true
+  },
+  "EntityAlert": {
+    "enabled": false,
+    "Range": 64.0,
+    "Sound": true,
+    "Visual": true,
+    "Chat": false
+  },
+  "Notifications": {
+    "enabled": false,
+    "Low Health": true,
+    "Player Near": true,
+    "Crystal Near": true,
+    "Health Threshold": 10
+  },
+  "Coordinates": {
+    "enabled": false,
+    "XYZ": true,
+    "Biome": true,
+    "Scale": 1,
+    "Background": true
+  },
+  "AutoDrop": {
+    "enabled": false,
+    "Delay": 5,
+    "Drop Garbage": false
+  },
+  "AutoTool": {
+    "enabled": false,
+    "Pickaxe": true,
+    "Axe": true,
+    "Sword": true,
+    "Delay": 2
+  }
+}
