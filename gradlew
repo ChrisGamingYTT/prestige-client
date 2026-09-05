@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 #
 # Copyright 2015 the original author or authors.
@@ -61,19 +61,11 @@ die () {
 }
 
 # OS specific support (must be 'true' or 'false').
-cygwin=false
-msys=false
 darwin=false
 nonstop=false
 case "`uname`" in
-  CYGWIN* )
-    cygwin=true
-    ;;
   Darwin* )
     darwin=true
-    ;;
-  MSYS* | MINGW* )
-    msys=true
     ;;
   NONSTOP* )
     nonstop=true
@@ -84,28 +76,22 @@ CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
-    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
-        # IBM's JDK on AIX uses strange locations for the executables
-        JAVACMD="$JAVA_HOME/jre/sh/java"
-    else
+    if [ -x "$JAVA_HOME/bin/java" ] ; then
         JAVACMD="$JAVA_HOME/bin/java"
-    fi
-    if [ ! -x "$JAVACMD" ] ; then
+    else
         die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
-
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
     fi
 else
     JAVACMD="java"
     which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
-
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
 fi
 
 # Increase the maximum file descriptors if we can.
-if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
+if [ "$darwin" = "false" -a "$nonstop" = "false" ] ; then
     MAX_FD_LIMIT=`ulimit -H -n`
     if [ $? -eq 0 ] ; then
         if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
@@ -124,51 +110,6 @@ fi
 if $darwin; then
     GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
 fi
-
-# For Cygwin or MSYS, switch paths to Windows format before running java
-if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
-    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
-    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
-
-    JAVACMD=`cygpath --unix "$JAVACMD"`
-
-    # We build the pattern for arguments to be converted via cygpath
-    ROOTDIRSRAW=`find -L / -maxdepth 3 -type d -name gradle 2>/dev/null`
-    SEP=""
-    for dir in $ROOTDIRSRAW ; do
-        ROOTDIRS="$ROOTDIRS$SEP$dir"
-        SEP="|"
-    done
-    OURCYGPATTERN="(^($ROOTDIRS)$SEP)|(^) *$(basename $0) *$"
-    OURCYGPATTERN=`echo "$OURCYGPATTERN" | sed -n 1000p`
-    let ARGC=$#+1
-    for arg in "$@" ; do
-        TEST=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
-        if [ $TEST -ne 0 ] ; then
-            arg=`echo "$arg" | sed "s/^/$MINGW_PREFIX/"`
-        fi
-        TAIL=`expr $ARGC - 1`
-        ARGC=`expr $ARGC - 1`
-        if [ $ARGC -eq 0 ] ; then
-            CLASSPATH="$CLASSPATH:$arg"
-        else
-            CLASSPATH="$CLASSPATH:$arg"
-        fi
-    done
-
-    # Determine the Java command to use to start the JVM.
-    if [ -n "$JAVA_HOME" ] ; then
-        if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
-            # IBM's JDK on AIX uses strange locations for the executables
-            JAVACMD="$JAVA_HOME/jre/sh/java"
-        else
-            JAVACMD="$JAVA_HOME/bin/java"
-        fi
-    fi
-fi
-
-# Escaping and quoting for Windows
-CLASSPATH=`cygpath --path "$CLASSPATH"`
 
 exec "$JAVACMD" $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS \
     -classpath "$CLASSPATH" \
