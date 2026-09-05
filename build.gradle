@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5.0'
+	id 'java'
 	id 'maven-publish'
 }
 
@@ -15,33 +15,16 @@ group = project.maven_group
 repositories {
 	mavenCentral()
 	maven { url = "https://maven.fabricmc.net/" }
-	maven { url = "https://api.modrinth.com/maven" }
 	maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-}
-
-processResources {
-	inputs.property "version", project.version
-	filteringCharset = "UTF-8"
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
+	implementation "org.slf4j:slf4j-api:1.7.36"
 }
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 16
-	it.options.compilerArgs.add("-Xlint:all,-deprecation")
-}
-
-java {
-	withSourcesJar()
+	it.options.compilerArgs.add("-Xlint:none")
 }
 
 jar {
@@ -55,9 +38,5 @@ publishing {
 		mavenJava(MavenPublication) {
 			from components.java
 		}
-	}
-
-	repositories {
-		// Add publishing repos here if needed
 	}
 }
