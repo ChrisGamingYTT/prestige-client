@@ -59,7 +59,8 @@ public class ClickGUI extends Screen {
 
 	@Override
 	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-		this.renderBackground(context, mouseX, mouseY, delta);
+		// Draw background
+		this.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
 		
 		// Draw window background
 		context.fill(x, y, x + WINDOW_WIDTH, y + WINDOW_HEIGHT, 0xFF1a1a1a);
