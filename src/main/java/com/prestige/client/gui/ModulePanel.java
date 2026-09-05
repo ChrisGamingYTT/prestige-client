@@ -46,27 +46,11 @@ public class ModulePanel {
 			context.fill(x + 2, y + 4, x + 10, y + height - 4, 0xFF00d4ff);
 		}
 		
-		// Draw module name
-		context.drawTextWithBackground(
-			client.textRenderer,
-			Text.literal(module.getName()),
-			x + 12,
-			y + 6,
-			0xFFFFFF,
-			0x00000000
-		);
+		context.drawText(client.textRenderer, Text.literal(module.getName()), x + 12, y + 6, 0xFFFFFF, false);
 
-		// Draw expanded arrow
-		String arrow = expanded ? "▼" : "▶";
+		String arrow = expanded ? "v" : ">";
 		if (!module.getSettings().isEmpty()) {
-			context.drawTextWithBackground(
-				client.textRenderer,
-				Text.literal(arrow),
-				x + width - 20,
-				y + 6,
-				0xFFFFFF,
-				0x00000000
-			);
+			context.drawText(client.textRenderer, Text.literal(arrow), x + width - 20, y + 6, 0xFFFFFF, false);
 		}
 
 		// Draw settings if expanded
@@ -82,26 +66,10 @@ public class ModulePanel {
 		for (Setting<?> setting : settings) {
 			context.fill(x, settingY, x + width, settingY + 15, 0xFF1a1a1a);
 			
-			// Draw setting name
-			context.drawTextWithBackground(
-				client.textRenderer,
-				Text.literal(setting.getName()),
-				x + 10,
-				settingY + 3,
-				0xFFCCCCCC,
-				0x00000000
-			);
+			context.drawText(client.textRenderer, Text.literal(setting.getName()), x + 10, settingY + 3, 0xFFCCCCCC, false);
 
-			// Draw value
 			String value = setting.getValue().toString();
-			context.drawTextWithBackground(
-				client.textRenderer,
-				Text.literal(value),
-				x + width - 30,
-				settingY + 3,
-				0xFF888888,
-				0x00000000
-			);
+			context.drawText(client.textRenderer, Text.literal(value), x + width - 30, settingY + 3, 0xFF888888, false);
 
 			settingY += 15;
 		}

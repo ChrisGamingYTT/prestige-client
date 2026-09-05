@@ -59,50 +59,29 @@ public class ClickGUI extends Screen {
 
 	@Override
 	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-		// Draw background
-		this.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
-		
-		// Draw window background
+		context.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
+
 		context.fill(x, y, x + WINDOW_WIDTH, y + WINDOW_HEIGHT, 0xFF1a1a1a);
-		
-		// Draw window border
 		context.fill(x, y, x + WINDOW_WIDTH, y + 2, 0xFF00d4ff);
-		
-		// Draw title
-		context.drawTextWithBackground(
-			client.textRenderer,
-			Text.literal("Prestige Client"),
-			x + 10,
-			y + 8,
-			0xFFFFFF,
-			0x00000000
-		);
-		
-		// Draw category tabs
+
+		context.drawText(client.textRenderer, Text.literal("Prestige Client"), x + 10, y + 8, 0xFFFFFF, false);
+
 		drawCategoryTabs(context, mouseX, mouseY);
-		
-		// Draw module list
 		drawModuleList(context, mouseX, mouseY);
 	}
 
 	private void drawCategoryTabs(DrawContext context, int mouseX, int mouseY) {
 		int tabX = x + 10;
 		int tabY = y + 25;
-		
+
 		for (ModuleCategory category : ModuleCategory.values()) {
 			int width = 40;
 			int color = category == selectedCategory ? 0xFF00d4ff : 0xFF666666;
-			
+
 			context.fill(tabX, tabY, tabX + width, tabY + 15, color);
-			context.drawTextWithBackground(
-				client.textRenderer,
-				Text.literal(category.getDisplayName().substring(0, Math.min(4, category.getDisplayName().length()))),
-				tabX + 5,
-				tabY + 3,
-				0xFFFFFF,
-				0x00000000
-			);
-			
+			String label = category.getDisplayName().substring(0, Math.min(4, category.getDisplayName().length()));
+			context.drawText(client.textRenderer, Text.literal(label), tabX + 5, tabY + 3, 0xFFFFFF, false);
+
 			tabX += width + 2;
 		}
 	}
@@ -118,8 +97,8 @@ public class ClickGUI extends Screen {
 	}
 
 	@Override
-	public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
-		this.scrollOffset += (int) verticalAmount * 10;
+	public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+		this.scrollOffset += (int) amount * 10;
 		refreshModules();
 		return true;
 	}

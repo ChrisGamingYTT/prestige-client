@@ -1,45 +1,64 @@
 plugins {
-	id 'java'
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
 }
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_16
-	targetCompatibility = JavaVersion.VERSION_16
-}
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+base {
+	archivesName = project.archives_base_name
+}
+
 repositories {
-	mavenCentral()
 }
 
 dependencies {
-	implementation "com.google.code.gson:gson:2.10.1"
-	implementation "org.lwjgl:lwjgl:3.3.1"
-	implementation "org.lwjgl:lwjgl-glfw:3.3.1"
-	implementation "org.slf4j:slf4j-api:1.7.36"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
+// Empty placeholder mixins fail Mixin AP ("no targets"); re-enable when they have @Injects
 sourceSets {
 	main {
 		java {
-			exclude 'com/prestige/client/**'
+			exclude 'com/prestige/client/mixin/**'
 		}
 	}
 }
 
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 16
+	it.options.release = 17
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
-	manifest {
-		attributes 'Main-Class': 'com.prestige.Stub'
-	}
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}" }
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
 	}
 }
