@@ -1,7 +1,16 @@
-plugins {
-	id 'fabric-loom' version '1.4.11'
-	id 'maven-publish'
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url = "https://maven.fabricmc.net/" }
+		gradlePluginPortal()
+	}
+	dependencies {
+		classpath "net.fabricmc:fabric-loom:1.4.11"
+	}
 }
+
+apply plugin: "fabric-loom"
+apply plugin: "maven-publish"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_16
@@ -58,5 +67,6 @@ publishing {
 	}
 
 	repositories {
+		// Add publishing repos here if needed
 	}
 }
